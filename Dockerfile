@@ -850,14 +850,11 @@ RUN \
     --disable-gif && \
   make -j$(nproc) install
 
-# x264 only have a stable branch no tags and we checkout commit so no hash is needed
-# bump: x264 /X264_VERSION=([[:xdigit:]]+)/ gitrefs:https://code.videolan.org/videolan/x264.git|re:#^refs/heads/stable$#|@commit
-# bump: x264 after ./hashupdate Dockerfile X264 $LATEST
-# bump: x264 link "Source diff $CURRENT..$LATEST" https://code.videolan.org/videolan/x264/-/compare/$CURRENT...$LATEST
-ARG X264_URL="https://code.videolan.org/videolan/x264.git"
-ARG X264_VERSION=b35605ace3ddf7c1a5d67a2eb553f034aef41d55
+# Patched x264 source for YP3 Shenju SL6806 chipset MP3 players.
+ARG X264_URL="https://github.com/tytydraco/x264-yp3-patch"
+ARG X264_VERSION=master
 RUN \
-  git clone "$X264_URL" && cd x264 && \
+  git clone "$X264_URL" x264 && cd x264 && \
   git checkout --recurse-submodules $X264_VERSION && \
   ./configure \
     --enable-pic \
