@@ -13,6 +13,7 @@ for platform in linux/amd64 linux/arm64; do
 
     echo "Building $platform..."
     docker buildx build \
+        --no-cache \
         --platform "$platform" \
         --build-arg ENABLE_FDKAAC=1 \
         -t "$tag" \
