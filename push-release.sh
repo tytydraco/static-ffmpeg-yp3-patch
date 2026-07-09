@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-set -eou pipefail
+SCRIPT_DIR="$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")"
+
+cd "$SCRIPT_DIR" || exit 1
 
 TMPDIR="$(mktemp -d)"
 

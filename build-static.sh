@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+SCRIPT_DIR="$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")"
 
-STATIC_DIR="static"
+STATIC_DIR="$SCRIPT_DIR/static"
 IMAGE_NAME="static-ffmpeg-yp3-patch"
 
 mkdir -p "$STATIC_DIR"
@@ -17,7 +17,7 @@ for platform in linux/amd64 linux/arm64; do
         --build-arg ENABLE_FDKAAC=1 \
         -t "$tag" \
         --load \
-        .
+        "$SCRIPT_DIR"
 
     echo "Extracting $platform..."
     mkdir -p "$dest"
