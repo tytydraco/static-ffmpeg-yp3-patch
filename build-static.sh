@@ -8,7 +8,7 @@ IMAGE_NAME="static-ffmpeg-yp3-patch"
 mkdir -p "$STATIC_DIR"
 
 for platform in linux/amd64 linux/arm64; do
-    tag="${IMAGE_NAME}:${platform//\//-}"
+    tag="$IMAGE_NAME:${platform//\//-}"
     dest="$PWD/$STATIC_DIR/${platform//\//-}"
 
     echo "Building $platform..."
