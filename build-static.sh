@@ -9,7 +9,7 @@ mkdir -p "$STATIC_DIR"
 
 for platform in linux/amd64 linux/arm64; do
     tag="$IMAGE_NAME:${platform//\//-}"
-    dest="$PWD/$STATIC_DIR/${platform//\//-}"
+    dest="$STATIC_DIR/${platform//\//-}"
 
     echo "Building $platform..."
     docker buildx build \
